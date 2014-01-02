@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://www.sgi.sk.ca/salvage_bid/all_search.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Salvage Vehicles and General Sales</title>
+<link href="./all_search_files/main-autofund.css" rel="stylesheet" type="text/css" media="screen">
+<link href="./all_search_files/salvage_styles.css" rel="stylesheet" type="text/css" media="screen">
+<!--<link href="/styles/salvage_print.css" rel="stylesheet" type="text/css" media="print" />-->
+<!--<script language="JavaScript" type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>-->
+<script src="./all_search_files/jquery-1.9.1.min.js" type="text/javascript"></script>
+<link href="./all_search_files/style.css" rel="stylesheet" type="text/css" media="screen">
+<script language="JavaScript" type="text/javascript" src="./all_search_files/jquery.tablesorter.js"></script>
+<script language="JavaScript" type="text/javascript" src="./all_search_files/salvage_bid_items-jquery.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+
+$(document).ready(function(){
+								   
+   $("#stoonDisclaim").hide();
+   
+   if ($("#store").val() == "SA") {
+	   		$("#stoonDisclaim").show();
+			$("#stoonDisclaim").html("<strong>Note</strong>: The compound is not open to view bid items prior to auction. Successful bidders will have the opportunity to inspect an item prior to confirming their purchase.");
+		};
+});
+
+function toggleInspec(inspecType) {
+			
+			if (inspecType != 0){
+				$("[class^='insp_']").hide();			
+				$(".insp_" + inspecType).show();
+				
+				$('.bidBox').each(function(){
+		  			$(this).val('');
+	   			});
+				
+				$("#bid_items").tablesorter({
+								widgets: ['zebra'],
+								//sortList: [[0,1]],
+								headers: { 8:{sorter: false}}
+						});
+			}
+			
+			if (inspecType == -1){
+				$("[class^='insp_']").show();
+				
+				$('.bidBox').each(function(){
+		  			$(this).val('');
+	   			});
+				
+				$("#bid_items").tablesorter({
+								widgets: ['zebra'],
+								//sortList: [[0,1]],
+								headers: { 8:{sorter: false}}
+						});
+				
+			}
+	};
+
+</script>
+
+<style type="text/css">
+	
+	#stoonDisclaim {
+		background-color: #F0F0F6;
+		height: 58px;
+		width: 400px;
+		float: right;
+		margin-right: 17px;
+		margin-top: 20px;
+		padding: 5px;
+	}
+</style>
+
+</head>
+
+<body>
+<div id="salvageMainContent">
+  <!-- <p>The SGI Salvage bid site <strong>will be closed for maintenance</strong> on Friday, August 12, 2011 from 11:00 PM to 1:30 AM. 
+We regret any inconvenience this may cause.</p> -->
+
+<div id="salvage_header">
+    <a href="http://www.sgi.sk.ca/" target="_parent"><img src="./all_search_files/sgi_logo2.gif" alt="SGI" height="44" width="112"></a>
+    <p id="links_right"> |
+        <a href="http://www.sgi.sk.ca/salvage_bid/index.html" target="_parent">BACK TO SEARCH</a> |
+        <a href="http://www.sgi.sk.ca/salvage_parts/salvage_frameset.html" target="_parent">FIND PARTS</a> |
+        <a href="http://www.sgi.sk.ca/salvage_bid/change_pw.html" target="_parent">RESET PASSWORD</a> |
+        <a href="http://www.sgi.sk.ca/salvage_sales/index.html" target="_parent">BACK TO SALVAGE</a> |
+        <a href="http://www.sgi.sk.ca/salvage_bid/change_info.html" target="_parent">UPDATE ACCOUNT INFO</a> |
+    </p>
+</div>
+<!-- <p align="left">
+   <a class="headerLinks" href="/salvage_new/index.html" target="_top">Salvage Sales</a> /
+   <a class="headerLinks" href="/salvage_bid/index.html" target="_parent">Back to search</a>
+</p> -->
+
+ 
+    <div id="stoonDisclaim" style="display: none;"></div>
+  <div class="main_container">
+    <h1 class="results_hdr">List of Vehicles</h1>
+        
+	Filter by Inspection Types
+    <br><br>
+    
+    <select onchange="toggleInspec(this.value)" id="inspecTypes" name="inspecTypes" class="input_borders" tabindex="0">
+    	<option value="-1">Show All</option>
+        <option value="1">No Inspections Required</option>
+        <option value="2">Parts Only / Cannot Be Registered</option>
+        <option value="3">Requires Structural &amp; Mechanical Inspections</option>
+        <option value="4">Requires Mechanical Inspection</option>
+        <option value="5">Requires Mechanical Inspection / Not Branded</option>
+    </select>
+    <p>&nbsp;</p>
+    
+    <h4 id="searchedLocation">All Branches</h4>
+    <input type="hidden" name="stores" id="store" value="%" tabindex="1"> 
+       
+    <form id="vehicleSubmitForm" method="post" action="http://www.sgi.sk.ca/lcgi/salvage_bid_site/pass_bid_to_login.cgi" _lpchecked="1">
+      
+    
+      <div id="amount_err" class="errormsg"></div>
+      <div id="reserve_err" class="errormsg"></div>
+    
+      <table id="bid_items" class="tablesorter" border="0" cellpadding="2" cellspacing="0">
+            <thead>
+                <tr>
+                    <th style="width: 5%;" class="header">Year</th>
+                    <th style="width: 10%;" class="header">Make</th>
+                    <th style="width: 10%;" class="header">Model</th>
+                    <th style="width: 10%;" class="header">Branch</th>
+                    <th style="width: 10%;" class="header">Location</th>
+                    <th style="width: 10%;" class="header">Stock Number</th>
+                    <th style="width: 10%;" class="header">Closing Date</th>
+                    <th style="width: 10%;" class="header">Reserve Price</th>
+                    <th style="width: 10%;">Enter Bid</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+             
+                <tr class="insp_2 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">2014</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">GM TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">GMC SIERRA 1500 PICKUP</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">O007</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">S138872</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S138872"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138872&store=Saskatoon" target="_blank">$2,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="2" id="S138872" name="S138872" type="text" keyev="true" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); padding-right: 0px; background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat no-repeat;"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">CHRYSLER</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">DODGE CHARGER</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">Moose Jaw</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">MAPLE CREEK - C&amp;G COLLISION</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">M132533</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_M132533"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132533&store=Moose%20Jaw" target="_blank">$4,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="3" id="M132533" name="M132533" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">GM TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">CHEVROLET TRAX</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">Moose Jaw</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">SWIFT CURRENT - VIC'S AUTOMOTIVE</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">M132578</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_M132578"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132578&store=Moose%20Jaw" target="_blank">$4,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="4" id="M132578" name="M132578" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">GM TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">CHEVROLET 1500 SILVERADO PICKUP</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">North Battleford</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">NB SALVAGE</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">N132354</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_N132354"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132354&store=North%20Battleford" target="_blank">$5,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="5" id="N132354" name="N132354" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">HYUNDAI</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">HYUNDAI ELANTRA</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">North Battleford</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">LLOYDMINSTER CONTACT NB SALVAGE FOR LOCATION</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">N132602</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_N132602"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132602&store=North%20Battleford" target="_blank">$800.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="6" id="N132602" name="N132602" type="text"></td>
+                </tr>
+             
+                <tr class="insp_4 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">MERCEDES-BENZ</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">MERCEDES B-CLASS</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">SHOWROOM</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">R136989</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R136989"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136989&store=Regina" target="_blank">$17,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="7" id="R136989" name="R136989" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">CHRYSLER TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">DODGE PICKUP 1500 SERIES</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">SR001</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">R137012</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R137012"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137012&store=Regina" target="_blank">$10,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="8" id="R137012" name="R137012" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">NISSAN TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">NISSAN ROGUE</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">SR250</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">R137192</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R137192"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137192&store=Regina" target="_blank">$8,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="9" id="R137192" name="R137192" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">KIA</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">KIA RIO</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">K038</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">S138780</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S138780"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138780&store=Saskatoon" target="_blank">$2,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="10" id="S138780" name="S138780" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">FORD-LINCOLN-MERCURY</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">FORD FOCUS</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">O084</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">S139096</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S139096"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139096&store=Saskatoon" target="_blank">$2,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="11" id="S139096" name="S139096" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">CHEVROLET</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">MALIBU</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">O051</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">S139163</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S139163"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139163&store=Saskatoon" target="_blank">$4,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="12" id="S139163" name="S139163" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">2013</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">HYUNDAI</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">HYUNDAI ELANTRA</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">Yorkton</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">ESTERHAZY - Towne Auto Body</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">Y132060</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_Y132060"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y132060&store=Yorkton" target="_blank">$1,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="13" id="Y132060" name="Y132060" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">2012</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">GM TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">GMC ACADIA</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">Moose Jaw</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">MJ SALVAGE B0002</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">M132401</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_M132401"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=M132401&store=Moose%20Jaw" target="_blank">$3,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="14" id="M132401" name="M132401" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                                                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">FORD TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">FORD ESCAPE</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">K075</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">S139162</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S139162"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139162&store=Saskatoon" target="_blank">$5,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="57" id="S139162" name="S139162" type="text"></td>
+                </tr>
+
+                <tr class="insp_4 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">FORD-LINCOLN-MERCURY</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">FORD FOCUS</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">North Battleford</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">LLOYDMINSTER CONTACT NB SALVAGE FOR LOCATION</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">N132390</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_N132390"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132390&store=North%20Battleford" target="_blank">$1,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="44" id="N132390" name="N132390" type="text"></td>
+                </tr>
+
+                <tr class="insp_1 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">TRAILERS ENCLOSED</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">CARGO MATE ENCLOSED TRAILER</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">SREASTFENCE</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">R137138</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R137138"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R137138&store=Regina" target="_blank">$3,800.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="51" id="R137138" name="R137138" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">VOLKSWAGEN</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">VOLKSWAGEN PASSAT</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">N063</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">S137671</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S137671"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S137671&store=Saskatoon" target="_blank">$1,800.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="52" id="S137671" name="S137671" type="text"></td>
+                </tr>
+             
+                <tr class="insp_2 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">TRAILERS CAMPER</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">V CROSS</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">AFFILIATED AUTO WRECKING   SASKATOON</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">S138499</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S138499"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S138499&store=Saskatoon" target="_blank">$250.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="53" id="S138499" name="S138499" type="text"></td>
+                </tr>
+             
+                <tr class="insp_1 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">UNKNOWN</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">SNOWMOBILE (ALL MAKES)</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">SN01</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">S139113</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S139113"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139113&store=Saskatoon" target="_blank">$2,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="56" id="S139113" name="S139113" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">CHRYSLER TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">DODGE JOURNEY</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">D041</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">S139165</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S139165"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139165&store=Saskatoon" target="_blank">$2,500.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="59" id="S139165" name="S139165" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">2010</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">FORD-LINCOLN-MERCURY</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">FORD FUSION</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">Saskatoon</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">L077</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">S139183</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_S139183"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=S139183&store=Saskatoon" target="_blank">$3,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="60" id="S139183" name="S139183" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">2009</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">MITSUBISHI</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">MITSUBISHI OUTLANDER</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">North Battleford</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">NB SALVAGE</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">N132597</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_N132597"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=N132597&store=North%20Battleford" target="_blank">$1,200.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="63" id="N132597" name="N132597" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">2009</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">GM TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">CHEVROLET VAN (FULL SIZE)</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">SR311</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">R136584</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R136584"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136584&store=Regina" target="_blank">$1,200.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="64" id="R136584" name="R136584" type="text"></td>
+                </tr>
+             
+                <tr class="insp_2 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">2009</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">FORD TRUCKS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">FORD VAN (FULL SIZE)</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">SR257</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">R136791</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R136791"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R136791&store=Regina" target="_blank">$900.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="65" id="R136791" name="R136791" type="text"></td>
+                </tr>
+             
+                <tr class="insp_3 odd">                                                 
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">0</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">VEHICLE PACKAGE</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">VEHICLE PACKAGE OF 20</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">REGINA CLAIMS YARD</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">RP130131</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">Jan 07 2014</a></td>
+                    <td id="rPrice_RP130131"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RP130131&store=Regina" target="_blank">$6,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="484" id="RP130131" name="RP130131" type="text"></td>
+                </tr>
+
+                <tr class="insp_1 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">0</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">MISC PARTS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">RUNING BOARDS OFF 2011 TRAVERSE</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">SHOWROOM</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">RT02901</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_RT02901"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=RT02901&store=Regina" target="_blank">$150.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="483" id="RT02901" name="RT02901" type="text"></td>
+                </tr>
+             
+                <tr class="insp_1 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">0</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">MISC PARTS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">SERVICE TRUCK BOX</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">SALES YARD</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">R133762-B</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R133762-B"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R133762-B&store=Regina" target="_blank">$3,000.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="486" id="R133762-B" name="R133762-B" type="text"></td>
+                </tr>
+             
+                <tr class="insp_1 even">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">0</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">SEATS</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">MISC PARTS</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">SHOWROOM</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">R135177-A</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_R135177-A"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=R135177-A&store=Regina" target="_blank">$300.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="487" id="R135177-A" name="R135177-A" type="text"></td>
+                </tr>
+             
+                <tr class="insp_1 odd">                	               	                
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">0</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">MISC</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">GARMIN NAVIGATION UNIT MODEL 2455</a></td>
+                    
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">Regina</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">DISPLAY CASE</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">Y131409-A</a></td>
+                    <td><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">Jan 08 2014</a></td>
+                    <td id="rPrice_Y131409-A"><a href="/lcgi/salvage_bid_site/comp_details.cgi?stock_num=Y131409-A&store=Regina" target="_blank">$50.00</a></td>
+                    
+                    <td>$<input width="90px;" class="bidBox input_borders" tabindex="488" id="Y131409-A" name="Y131409-A" type="text"></td>
+                </tr>
+             
+            </tbody>    
+        </table>
+        <!--<div class="salvfooter" style="position: fixed; padding-bottom: 120px; border-top: 1px solid gray;">-->
+        	<p class="button_right" style="margin:7px 20px 1.5em 0;"><input class="button" type="submit" id="vehicleSubmit" value="Proceed to check-out" tabindex="489"></p>
+        <!--</div>-->
+      	</form>
+                
+	</div>
+   
+    <!--<div class="salvfooter">    -->
+		<div id="salvage_footer">
+	<p><strong>Call any of our branches toll free.</strong><br>
+       <a href="http://www.sgi.sk.ca/online_services/locators/salvage/regina.html" target="_parent">Regina</a>: 1-800-667-3664 |
+       <a href="http://www.sgi.sk.ca/online_services/locators/salvage/saskatoon.html" target="_parent">Saskatoon</a>: 1-800-667-3973 |
+       <a href="http://www.sgi.sk.ca/online_services/locators/salvage/moosejaw.html" target="_parent">Moose Jaw</a>: 1-800-667-5133 |
+       <a href="http://www.sgi.sk.ca/online_services/locators/salvage/yorkton.html" target="_parent">Yorkton</a>: 1-800-667-1482 |
+       <a href="http://www.sgi.sk.ca/online_services/locators/salvage/northbattleford.html" target="_parent">North Battleford</a>: 1-800-667-1322
+    </p>
+</div>
+<script src="./all_search_files/webtrends.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var _tag=new WebTrends();
+_tag.dcsGetId();
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+_tag.dcsCustom=function(){
+}
+_tag.dcsCollect();
+//]]>
+</script>
+<noscript>
+&lt;div&gt;&lt;img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="//webcollector.sgi.sk.ca/dcstvlk1z1h4oqq4021m2hzes_3x1y/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No&amp;amp;WT.tv=9.4.0&amp;amp;dcssip=www.sgi.sk.ca"/&gt;&lt;/div&gt;
+</noscript>
+
+   <!-- </div> -->
+</div>
+
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script>
+
+<script language="JavaScript" type="text/javascript" src="./js/carPhotos.js"></script>
+</body></html>
