@@ -2,13 +2,46 @@ var carPhotos = (function() {
     "use strict";
 
     // imports
-    var $ = jQuery;
-
-
-    // flag if global initialization has been completed
-    var ready = false,
+    var $ = jQuery,
         tofu = function(a,c){return a.replace(/{ *([^} ]+) *}/g,function(b,a){b=c;a.replace(/[^.]+/g,function(a){b=b[a]});return b})},
-        ls = function(a,b){return b?{get:function(c){return a[c]&&b.parse(a[c])},set:function(c,d){a[c]=b.stringify(d)}}:{}}(window.localStorage||{},JSON);
+        nsls =function(e){"use strict";function t(e,t){return e+"-"+t}function r(r,n){if(!r||""===r)throw new Error("You must provide a non-empty namespace");n=n||{};var o=n.storageAdapter||e.localStorage,m={setItem:function(e,n){o.setItem(t(r,e),n)},getItem:function(e){return o.getItem(t(r,e))},removeItem:function(e){o.removeItem(t(r,e))}};return m.set=m.setItem,m.get=m.getItem,m.remove=m.removeItem,m}return r}(window);
+
+
+    var ready = false,                  // flag if global initialization has been completed
+        ls = nsls('mod-sgi-cars');      // namespaced localStorage wrapper
+        
+    
+    var db = {
+        _items: [],
+
+        init: function() {
+            if (this._items.length === 0) {
+                var data = JSON.parse( ls.get('items') );
+                this._items = data || [];
+            }
+        },
+
+        all: function() {
+            return this._items;
+        },
+
+        add: function ( item ){
+            this._items.unshift( item );
+            ls.set('items', JSON.stringify( this._items ));
+        },
+
+        has: function( item ) {
+            var i = 0,
+                z = this._items.length;
+            for (; i < z; i++) {
+                debugger;
+                if (this._items[i].stockNumber == item.stockNumber) 
+                    return true;
+            }
+            return false;
+        }
+    };
+    db.init();
 
 
     function StarItemMod( table ) {
@@ -38,7 +71,13 @@ var carPhotos = (function() {
 
 
         self.install = function install() {
-            self.showStarredItem(ls.get('star'));
+            var all = db.all(),
+                i = 0,
+                z = all.length;
+
+            for(; i < z; i++) {
+                self.showStarredItem( all[i], { append: true } );
+            }
 
             table.on('click', '.js-star-item', function() {
                 var item = {
@@ -46,15 +85,20 @@ var carPhotos = (function() {
                         'thumbnailUrl':$(this).attr('data-thumbnail-url')
                     };
 
-                ls.set('star', item);
-                self.showStarredItem( item );
+                if ( !db.has(item) ) {
+                    db.add( item );
+                    self.showStarredItem( item );    
+                }
             });
         };
 
-        self.showStarredItem = function install( item ) {
-            if (typeof item === 'undefined') return;
+        self.showStarredItem = function install( item, options ) {
+            if (!item) return;
             var starredItem = tofu( starredItemTemplate, item );
-            doc.find('.js-starred-items').append(starredItem);
+            if (options && options.append)
+                doc.find('.js-starred-items').append(starredItem);
+            else
+                doc.find('.js-starred-items').prepend(starredItem);
         };
 
         self.uninstall = function uninstall() {
