@@ -16,6 +16,7 @@
     "url": "https://github.com/rudylattae/mod-sgi-salvage-carphotos/issues"
   },
   "devDependencies": {
-    "express": "~3.4.7"
+    "express": "~3.4.7",
+    "harp": "~0.11.0"
   }
 }
