@@ -1,0 +1,255 @@
+/* ------ Header Section ------ */
+#salvage_header {
+	border-bottom: 1px solid gray;
+	/*height:44px;	 height of logo image */
+	font-size:70%;
+ }
+#salvage_header #links_right {
+	text-align:right;
+	padding:25px 65px 0 112px;
+	margin:0;
+	vertical-align:bottom;
+	font-weight:bold;
+ }
+#salvage_header a {
+	text-decoration: none;
+	color: gray;
+ }
+#salvage_header a:hover {
+	color: red;
+ }
+#salvage_header img {
+	float:left;
+	/*	padding-right: 570px;
+	padding-right: 470px;	*/
+ } 
+#bid_on_items, #find_parts {
+	border-left: 1px solid gray;
+	padding: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+ }
+.headerLinks:link {	
+	color: #6666FF;
+	text-decoration: none;
+ }
+.headerLinks:visited {	
+	color: #6666FF;
+	text-decoration: none;
+ }
+.headerLinks:hover {
+	color: #6666FF;
+	text-decoration: underline;
+ }
+/*
+.headerLinks:active {
+	color: #999999;
+	text-decoration: underline;
+*/
+/* ------ End Header Section ------ */
+
+
+/* ------ Footer Section ------ */
+#salvage_footer {
+	padding:1.5em 0 0.5em 0;
+	border-top: 1px solid gray;
+	text-align:center;
+	font-size:90%;
+ }
+/* ------ End Footer Section ------ */
+
+
+/* ------ Index page Section ------ */
+#salvageMainContent {
+	/* width: 862px;
+	width: 762px; */
+	/* padding-left: 200px;
+	padding-left: 150px; */
+ }
+div.main_container {
+	padding:1.5em 15px;
+ }
+#sal_register-btn {
+	height:115px;
+	width:115px;
+ }
+#sal_register-btn a {
+	display:block;
+	height:115px;
+	width:115px;
+	background:url('/images/0-quick-links/salvage/register-hover.jpg') top left no-repeat;
+ }
+#sal_register-btn a:hover {
+	background-position: -115px 0;
+ }
+/* ------ End Index page Section ------ */
+
+
+/* ------ Bid Items page Section ------ */
+h1.results_hdr {
+	color:#000000;
+	margin-bottom:1.0em;
+ }
+span#searchedLocation {
+	font-size:90%;
+ }
+.sort_heading:link {
+	color: black;
+	text-decoration: none;
+ }
+.sort_heading:visited {
+	color: black;
+	text-decoration: none;
+ }
+.sort_heading:hover {
+	color: black;
+	text-decoration: underline;
+ }
+/* #bid_items tr td {
+	font-size: 14px;
+ }  */
+#bid_items a {
+	text-decoration: none;
+	color: black;
+ }
+#bid_items a:hover {
+	color: black;
+	text-decoration: underline;
+ }
+#bid_results a {
+	text-decoration: none;
+	color: black;
+ }
+#bid_results a:hover {
+	color: black;
+	text-decoration: underline;
+ }
+p.button_right {
+	text-align:right;
+	margin:1.0em 20px 1.5em 0;
+ }
+/*
+.ColumnHeading {
+	font-size: 10pt;
+    color: black;
+    font-family: Verdana;
+    background-color: #cccccc;
+    text-align: left;
+ }
+*/
+/* ------ End Bid Items page Section ------ */
+
+/* ------ Bid Items Details page Section ------ */
+div.details_wrapper {
+	padding-left:15px;
+ }
+p.pmnt_head {
+	margin-bottom:2px;
+ }
+ul.pmnt_list {
+	padding-left:1.5em;
+	margin:0;
+ }
+table.tbl_itemdetails {
+	border:1px solid #666666;
+ }
+table.tbl_itemdetails tr td {
+	padding:2px 4px 2px 2px;
+ }
+.col_left-sm {
+	padding-left:2%;
+	float: left;
+	width: 25%;
+ }
+.col_right-sm {
+	margin-left:27%;
+	width:35%;
+ } 
+.col_left {
+	float: left;
+	width: 346px;
+ }
+.col_right {
+	margin-left:349px;
+ } 
+/* ------------------------------------------------ */
+
+/* ------ Change Password Section ----------------- */
+/* ------------------------------------------------ */
+
+/* ------ Registration/Customer Info Section ------ */
+.err_msg  {
+    color:#CC0000; font-size:12px;
+ }
+
+#check_mark1, #check_mark2 {
+    display:none;
+ }
+table.form {
+	width:100%;
+  }
+table.form tr td, table.terms_conds tr td {
+	padding:5px;
+ }
+table.form tr td.field_label {
+	text-align:right; width:42%;
+ }
+table.form tr td.field_input {
+	width:58%;
+ }
+table.terms_conds {
+	border:1px solid #333333;
+	width:65%;
+	margin:2.0em 17%;
+ }
+p.form_indnt {
+	text-align:center;
+ }
+p.indicates {
+	font-style:italic;
+	margin-bottom:0;
+	margin-left:10%;
+ }
+p.sub_btn {
+	text-align:right;
+	margin-right:10%;
+ }
+/* ------ End Registration/Customer Info Section ------ */
+
+
+/* ------ Misc Section ------ */
+.errormsg {
+	color:#990000;
+ }
+.input_borders {
+	border: 2px inset #CCCCCC;
+ }
+input.button, input#print, input#print2, input#export {
+	padding: 2px;
+ }
+input.button, input#print, input#print2, input#export {
+	border-bottom: 2px solid #777;
+	border-right: 2px solid #777;
+	border-left: 1px solid #999;
+	border-top: 1px solid #999;
+	background-color: #EEE;
+ }
+input.button:hover, input#print:hover, input#print2:hover, input#export:hover {
+	border-top: 2px solid #777;
+	border-left: 2px solid #777;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	background-color: #DDD;
+ }
+.wrapper {
+	overflow: hidden;
+ }
+.floater {
+	float: left;
+	padding-left: 75px;
+ }
+.redborder {
+    border:2px solid red;
+ }
+/* ------ End Misc Section ------ */
+
