@@ -14,5 +14,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rudylattae/mod-sgi-salvage-carphotos/issues"
+  },
+  "devDependencies": {
+    "express": "~3.4.7"
   }
 }
