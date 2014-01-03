@@ -4,6 +4,7 @@
   "description": "Show car photo thumbnails in the main item list",
   "main": "index.js",
   "scripts": {
+    "sandbox": "node ./sandbox/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
