@@ -1,0 +1,440 @@
+@charset "UTF-8"; /* CSS Shorthand */
+
+/* Global wrapper, float, and elements */
+*{margin:0; padding:0; border:0}
+html{overflow-y:scroll}
+html, body{font-family:Arial,Helvetica,sans-serif; font-size:100%}
+#sitewrapper{width:990px; height:auto; margin:0 auto}
+.wrapper{overflow:hidden; width:auto; height:auto}
+#wrapper2{overflow:hidden; width:auto; height:auto}
+.floater{float:left}
+.floater2{float:right}
+.notation{color:#999}
+
+hr{border-top:1px solid #DFE0E2; margin:0 0 10px 0}
+.hrline{border-top:1px solid #DFE0E2; margin:5px 0 5px 0; width:auto; height:1px}
+.hrline2{border-top:1px solid #DFE0E2; margin:10px 0 10px 0; width:auto; height:1px}
+
+.ul-listcontent{color:black; line-height:21px; margin:0 0 20px 50px}
+.ol-listcontent{color:black; line-height:21px; margin:0 0 20px 50px}
+.ol-listcontent2{color:black; line-height:21px; margin:0 0 10px 20px}
+.ul-listcontent-sublist{color:black; line-height:21px; margin:0 0 6px 50px}
+.ol-listcontent-sublist{color:black; line-height:21px; margin:0 0 6px 50px}
+.ol-listcontent-sublist2{color:black; line-height:21px; margin:0 0 10px 25px}
+.ul-listcontent li, .ol-listcontent li{margin:0 0 6px 0}  
+.btmspace{margin-bottom:25px}
+
+p{line-height:22px; margin:0 0 20px 0}
+
+h1, h2, h3, h4{margin:0 0 10px 0}
+h1{color:green; font-size:23.5px; font-weight:430}/* Set size for layout */
+h2{color:black; font-size:18px; font-weight:417; line-height:21px}/* Set size for layout */
+h3{color:green}
+h4{color:black}
+h5{color:#333}
+
+.table0{margin:5px 0 25px 25px}
+.table1{background-color:#F4F4F4}
+.table2{background-color:#E1E1E1}
+.tablepad{padding:10px}
+.tablecenter{text-align:center}
+
+blockquote{background:#f9f9f9; border-left:10px solid #ccc; margin:1.5em 10px; padding:.5em 10px; quotes:"\201C""\201D""\2018""\2019"}
+blockquote:before{color:#ccc; font-size:4em; line-height:.1em; margin-right:.25em; vertical-align:-.4em}
+blockquote p{display:inline}
+.blockerror{background:#f9f9f9; border-left:10px solid #ccc; margin:5px 5px 20px 5px; padding:5px; quotes:"\201C""\201D""\2018""\2019"; color:#CC0000; font-weight:bold; font-size:105%}
+
+sup{font-weight:bold}
+sup a{color:#c93312; text-decoration:none}
+sup a:hover{color:#F00; text-decoration:underline}
+
+a{color:black}
+a:hover{color:#c93312}
+.links a{font-family:Verdana,Arial,Helvetica,sans-serif; color:black}
+.links a:hover{color:#c93312}
+
+.tip{color: #fff; background:#1d1d1d; display:none; padding:5px; position:absolute; z-index:1000; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px}
+.tip_trigger .tip{display:none}
+
+/* Global clear float */
+.clear{visibility:hidden; display:block; clear:both; height:0px; margin:0; padding:0; font-size:0}
+
+/* Form borders and buttons */
+.formborder{border:1px solid #5D666B; padding:0 0 0 5px}
+.searchfieldbar{position:relative; border:1px solid #000; height:18px; width:195px}
+.formsize1{height:auto; width:250px}
+.formsize4{height:auto; width:318px}
+.formsize5{height:auto; width:515px}
+.formsize6{height:300px; width:515px}
+.formbutton0{height:20px; width:auto; cursor:pointer; border:1px solid #5D666B; font-weight:bold; color:#000; background-color:#f3f3f3}
+.formbutton0:hover{cursor:pointer; background-color:#575757; color:#FFF}
+.formbutton1{height:30px; width:75px; cursor:pointer; border:1px solid #5D666B; font-weight:bold; color:#000; background-color:#f3f3f;}
+.formbutton1:hover{cursor:pointer; background-color:#575757; color:#FFF}
+.formbutton2{height:25px; width:70px; cursor:pointer; border:1px solid #5D666B; font-weight:bold; margin:0 10px 10px 10px; color:#000; background-color:#f3f3f3}
+.formbutton2:hover{cursor:pointer; background-color:#575757; color:#FFF}
+.nextbutton{height:auto; width:auto; cursor:pointer; border:1px solid #5D666B; font-weight:bold; margin:7px 27px 7px 27px; padding:7px; color:#000; background-color:#f3f3f3; text-decoration:none; font-size:100%}
+.nextbutton:hover{cursor:pointer; background-color:#575757; color:#FFF; text-decoration:none}
+.nextbutton a{text-decoration:none; color:#000}
+.nextbutton a:hover{text-decoration:none; color:#FFF}
+.signinbutton{height:auto; width:auto; cursor:pointer; border:1px solid #5D666B; font-weight:bold; margin:2px 0 0 0; padding:3px 5px 3px 5px; color:#000; background-color:#f3f3f3; text-decoration:none; font-size:100%}
+.signinbutton:hover{cursor:pointer; background-color:#575757; color:#FFF; text-decoration:none}
+.signinbutton a{text-decoration:none; color:#000}
+.signinbutton a:hover{text-decoration:none; color:#FFF}
+
+/* Top Include - Next 2 */
+/* Top Nav */
+#topNav{width:990px; height:auto; margin:15px 0 5px 0}
+#sgiLogo{width:600px; height:auto}
+#sgiLogo img{padding:0 0 13px 0}
+.toplinks{margin:0; font-weight:bold; font-size:95%}
+.toplinks a:link, .toplinks a:visited{color:black; text-decoration:none}
+.toplinks a:hover{color:#c93312; text-decoration:underline}
+
+/* Top Nav Search*/
+#searchBar{width:380px; font-weight:bold; font-size:small; color:black}
+#mysgibar{margin:0 0 13px 0}
+#mysgilogo{margin:0 11px 0 0}
+.mysgispacing{margin:0 11px 0 11px; padding:5px 0 0 0}
+
+/* Main Sections Include */ 
+#mainNavLinks{padding-top:10px; width:992px;}
+#indviduals, #businesses, #partners, #services{width:246px; height:32px; font-size:18px; text-align:center; color:white; background:url('/images/0-structure/nav_gradient0.jpg') repeat-x}/* Set size for nav bar */
+#indviduals a, #businesses a, #partners a, #services a{display:block; width:246px; height:32px; text-decoration:none; color:white; font-family:Arial,Helvetica,sans-serif; padding-top:5px; font-weight:bold}
+#indviduals a:link, #businesses a:link, #partners a:link, #services a:link{text-decoration:none; color:white}
+#indviduals, #businesses, #partners, #services{border-top:1px solid #5D666B; border-bottom:1px solid #5D666B}
+#indviduals{border-left:1px solid #5D666B}
+#indviduals, #businesses, #partners{border-right:1px solid #4D4D4D}
+#services{border-right:1px solid #5D666B}
+
+/* Sections/Sub Menu Links */  
+.subLinks{width:988px; height:32px; font-size:11.75px; text-align:center; background:url('/images/0-structure/nav_gradient4.jpg') repeat; border-right:1px solid #5D666B; font-family:Arial,Helvetica,sans-serif; overflow:hidden}
+#sub1, #sub2, #sub3, #sub4, #sub5, #sub6, #sub7, #sub8, #sub9{width:auto; color:white; background:url('/images/0-structure/nav_gradient4.jpg') repeat; font-family:Verdana,Geneva,sans-serif; height:32px; font-weight:bold}
+#sub1 a, #sub2 a, #sub3 a, #sub4 a, #sub5 a, #sub6 a, #sub7 a, #sub8 a, #sub9 a{display:block; height:32px; padding:7px 17px 0 17px}
+#sub1 a:link, #sub2 a:link, #sub3 a:link, #sub4 a:link, #sub5 a:link, #sub6 a:link, #sub7 a:link, #sub8 a:link, #sub9 a:link{color:white; text-decoration:none}
+#sub1 a:visited, #sub2 a:visited, #sub3 a:visited, #sub4 a:visited, #sub5 a:visited, #sub6 a:visited, #sub7 a:visited, #sub8 a:visited, #sub9 a:visited{color:white; text-decoration:none}
+#sub1{border-right:1px solid #5D666B; border-left:1px solid #5D666B}
+#sub2, #sub3, #sub4, #sub5, #sub6, #sub7, #sub8, #sub9{border-right:1px solid #5D666B}
+
+/* Home Page Layout */
+#mainNavContent{width:992px; padding:10px 0 0 0}
+#indviduals2, #businesses2, #partners2, #services2{width:246px; height:180px; text-align:center; font-size:13px; background-color:#F3F3F3; display:block; cursor:pointer; border:1px solid #5D666B; margin:5px 0 0 0; padding:5px 0 0 0; color:black; position:relative; left: -1px}
+.hometext{padding:0 5px 0 5px; font-weight:bold}
+.space212{width:auto; height:212px; padding:0 0 20px 0}
+#indviduals2{background:url('/images/0-home-page/personal-2013.jpg') no-repeat}
+#businesses2{background:url('/images/0-home-page/businesses-2013.jpg') no-repeat}
+#partners2{background:url('/images/0-home-page/partners-2013.jpg') no-repeat}
+#services2{background:url('/images/0-home-page/online-2013.jpg') no-repeat}
+
+/* Breadcrumb */
+#breadcrumb {float:left; width:975px; height:20px; margin:5px 10px 3px 5px; font-size:11.5px}
+.breadcrumbstyle{color:#999; font-size:11.5px; font-family:Verdana,Geneva,sans-serif}/* Set size for nav bar */
+.breadcrumbstyle a:link, .breadcrumbstyle a:visited, .breadcrumbstyle a:active{color:#999; text-decoration:none; font-size:11.5px}
+.breadcrumbstyle a:hover{color:#999; text-decoration:underline}
+
+/* Feature Rotator */
+#feature{width:739px; height:260px; border:1px solid #DFE0E2; overflow:hidden}
+#feature-nojs{width:739px; height:260px; border:1px solid #DFE0E2; overflow:hidden}
+#feature1{width:739px; height:260px; border:1px solid #DFE0E2; overflow:hidden;  border-right:none; border-left:2px solid #DFE0E2; }
+#feature-nojs1{width:739px; height:260px; border:1px solid #DFE0E2; overflow:hidden; border-right:none; border-left:2px solid #DFE0E2;}
+div#feature_list{width:739px; height:260px; overflow:hidden; position:relative; overflow:hidden}
+div#feature_list ul{position:absolute; top:0; list-style:none; padding:0; margin:0; overflow:hidden}
+ul#tabs{left:0; z-index:2; width:320px}
+.nojsspacer{display:block; height:67px; width:auto; padding:10px; background-color:#F3F3F3; text-decoration:none}
+.nojsspacer .featuretitle{font-weight:bold; margin-bottom:20px}
+.nojsspacer:hover{background-color:#f5eba7; text-decoration:none}
+.nojsspacer:hover .featuretitle{color:#c93312; text-decoration:underline}
+.nojsspacer:hover .featuredesc{text-decoration:none}
+.nojs-line{border-top:1px solid #999}
+.tabs-nojs li{font-size:12px; font-family:Arial}
+.tabs-nojs li a{color:black; text-decoration:none; display:block; height:67px; outline:none; padding:20px 40px 0 20px; font-size:16px; font-weight:bold}
+.tabs-nojs li a:hover{text-decoration: underline; color:#c93312}
+.tabsbg{background: url('/images/0-structure/featurebg1.png') no-repeat -35px}
+ul#tabs li{font-size:12px; font-family:Arial}
+ul#tabs li a{color:black; text-decoration:none; display:block; height:67px; outline:none; padding:20px 40px 0 20px; font-size:16px; font-weight:bold}
+ul#tabs li a:hover{text-decoration: underline; color:#c93312; background: url('/images/0-structure/featurebg2.png') no-repeat -35px}
+ul#tabs li a.current {background: url('/images/0-structure/feature-tab-current.png') no-repeat bottom left; color:#c93312}
+ul#tabs li a.current:hover{text-decoration:none; cursor:default; color:#c93312}
+ul#output {right:0; width:453px; height:260px; position:relative}
+ul#output li {position:absolute; width:453px; height:260px}
+ul#output li a.featurelink{position:absolute; bottom:15px; right:15px; padding:12px 12px 12px 12px; text-decoration:none; font-size:12px; color:white; background:#000; border:2px solid #DFE0E2; font-weight:bold}
+ul#output li a:hover{background:#f5eba7; text-decoration:underline; color:#c93312}
+.featureborder{background: url('/images/0-structure/featurebgline.png') no-repeat top left}
+
+/* Section Landing Modules */
+/* News */
+.article{width:auto; padding:5px 0 0 15px; padding-right:30px; font-size:small}
+#cell0, #salvagebuttonarea{width:246px; border:1px solid #DFE0E2; background-color:#F3F3F3; height:260px; border-left:0px solid #DFE0E2; overflow:hidden}
+#cell0:hover{background-color:#f5eba7}
+.newslinks p{line-height:15px}
+.newslinks p a{text-decoration:none}
+.newslinks p a:hover{color:#bb2a3b; text-decoration:none}
+.newslinks p a .under{font-weight:bold; color:black}
+.newslinks p a:hover .under{font-weight:bold; color:#bb2a3b; text-decoration:underline}
+.newslinks p a:hover .text{color:black}
+
+/* Quick Links */
+#quickLinks{height:24px; margin-top:10px; padding-top:5px; padding-left:10px; background:url('/images/0-structure/orange_gradient.jpg') no-repeat}
+#cell1a, #cell2b, #cell3c, #cell4d, #cell1e, #cell2f, #cell3g, #cell4h, #cell1i, #cell2j, #cell3k, #cell4l{width:226px; height:80px; font-size:13px; text-align:center; display:block; border-top:1px solid #DFE0E2; border-right:0px; border-bottom:1px solid #DFE0E2; border-left:1px solid #999; background-color:#F3F3F3; padding:140px 10px 10px 10px; cursor:pointer; color:black; text-decoration:none}
+#cell1a .celltitle, #cell2b .celltitle, #cell3c .celltitle, #cell4d .celltitle, #cell1e .celltitle, #cell2f .celltitle, #cell3g .celltitle, #cell4h .celltitle, #cell1i .celltitle, #cell2j .celltitle, #cell3k .celltitle, #cell4l .celltitle{color:green; font-size:18px; font-weight:bold}
+#cell1a .celltext, #cell2b .celltext, #cell3c .celltext, #cell4d .celltext, #cell1e .celltext, #cell2f .celltext, #cell3g .celltext, #cell4h .celltext, #cell1i .celltext, #cell2j .celltext, #cell3k .celltext, #cell4l .celltext{line-height:18px}
+#cell1a:hover, #cell2b:hover, #cell3c:hover, #cell4d:hover, #cell1e:hover, #cell2f:hover, #cell3g:hover, #cell4h:hover, #cell1i:hover, #cell2j:hover, #cell3k:hover, #cell4l:hover{color:black; background-color:#f5eba7}
+#cell1a:hover .celltitle, #cell2b:hover .celltitle, #cell3c:hover .celltitle, #cell4d:hover .celltitle, #cell1e:hover .celltitle, #cell2f:hover .celltitle, #cell3g:hover .celltitle, #cell4h:hover .celltitle, #cell1i:hover .celltitle, #cell2j:hover .celltitle, #cell3k:hover .celltitle, #cell4l:hover .celltitle{color:green; text-decoration:underline}
+/* Individual */
+#cell1a{border-left:1px solid #DFE0E2; background:url('/images/0-quick-links/individuals/seat.png') no-repeat top center #F3F3F3}
+#cell2b{background:url('/images/0-quick-links/individuals/highwayhotline.png') no-repeat top center #F3F3F3}
+#cell3c{background:url('/images/0-quick-links/individuals/book.png') no-repeat top center #F3F3F3}
+#cell4d{border-right:1px solid #DFE0E2; background:url('/images/0-quick-links/individuals/eclaim.png') no-repeat top center #F3F3F3}
+/* Business */
+#cell1e{border-left:1px solid #DFE0E2; background:url('/images/0-quick-links/businesses/medical.png') no-repeat top center #F3F3F3}
+#cell2f{background:url('/images/0-quick-links/businesses/irp.png') no-repeat top center #F3F3F3}
+#cell3g{background:url('/images/0-quick-links/businesses/rec.png') no-repeat top center #F3F3F3}
+#cell4h{border-right:1px solid #DFE0E2; background:url('/images/0-quick-links/businesses/truckers.png') no-repeat top center #F3F3F3}
+/* Salvage */
+#cell1i{border-left:1px solid #DFE0E2; background:url('/images/0-quick-links/salvage/changes.png') no-repeat top center #F3F3F3}
+#cell2j{background:url('/images/0-quick-links/salvage/partner.png') no-repeat top center #F3F3F3}
+#cell3k{background:url('/images/0-quick-links/salvage/map.png') no-repeat top center #F3F3F3}
+#cell4l{border-right:1px solid #DFE0E2; background:url('/images/0-quick-links/salvage/steps.png') no-repeat top center #F3F3F3}
+#sbutton1a, #sbutton1b{width:246px; height:128px; text-align:center; display:block; cursor:pointer}
+/* Salvage bid and parts buttons */
+#sbutton1a{background:url('/images/0-quick-links/salvage/bidonitems.png') no-repeat top center #F3F3F3}
+#sbutton1b{background:url('/images/0-quick-links/salvage/findparts.png') no-repeat top center #F3F3F3; border-top:4px solid #999}
+#sbutton1a:hover{background:url('/images/0-quick-links/salvage/bidonitems-hover.png') no-repeat top center #f5eba7}
+#sbutton1b:hover{background:url('/images/0-quick-links/salvage/findparts-hover.png') no-repeat top center #f5eba7}
+
+/* Verticle Tree Nav Menu - next 5 sections */
+.verticleTree-left{width:250px; height:auto;  overflow:hidden}
+
+/* Menu Title */
+#parentmenu{color:black; font-size:large; font-weight:bold; background:url('/images/0-structure/orange_gradient3.jpg') repeat-y; padding:5px 5px 5px 10px; overflow:hidden; font-family:Arial,Helvetica,sans-serif}
+#parentmenumedium{color:black; font-size:medium; font-weight:bold; background:url('/images/0-structure/orange_gradient3.jpg') repeat-y; padding:5px 5px 5px 10px; overflow:hidden}
+#parentmenu a{color:black; text-decoration:none}
+#parentmenu a:hover{color:black; text-decoration:underline}
+#parentmenumedium a{color:black; text-decoration:none}
+#parentmenumedium a:hover{color:black; text-decoration:underline}
+
+/* Menu Item Styles -edit for menu styles */
+.treeview li a{font-weight:bold; text-decoration:none; color:green; font-size:small}
+.treeview .blk a{color:black}
+.treeview a.selected{background-color:#e0e1e3; border-left:3px solid #ffc661; padding:0 0 1px 2px; display:block}
+.treeview .selected{background-color:#e0e1e3; border-left:3px solid #ffc661; padding:0 0 1px 2px; display:block}
+
+/* Hover Color, make sure both classes have the same values */
+.treeview .hover{background-color:#e0e1e3}
+.treeview .toplevel a:hover{background-color:#e0e1e3}
+
+/* Section Line */
+.sectionline{border-bottom:1px solid #DFE0E2}
+
+/* Menu Item Core Strcture -no need to edit */
+.treeview .hide{display:none}
+#treecontrol{margin:1em 0; display:none}
+.treeview, .treeview ul{padding:1px; margin:0; list-style:none}
+.treeview ul{margin-top:4px; font-family:Arial,Helvetica,sans-serif}
+.treeview .hitarea{background:url('/images/0-structure/treeview-default.gif') -64px -25px no-repeat; height:16px; width:16px; margin-left:-16px; float:left}
+* html .hitarea{display:inline; float:none}/* fix for IE6 */
+.treeview li{margin:0; padding:3px 0px 3px 16px; font-weight:bold; text-decoration:none; font-size:small}
+.treeview li{background:url('/images/0-structure/treeview-default-line.gif') 0 0 no-repeat}
+.treeview li.collapsable, .treeview li.expandable{background-position:0 -176px}
+.treeview .expandable-hitarea{background-position:-80px -3px}
+.treeview li.last{background-position:0 -1766px}
+.treeview li.lastCollapsable, .treeview li.lastExpandable{background-image:url('/images/0-structure/treeview-default.gif')}
+.treeview li.open{background-image:none}
+.treeview li.lastCollapsable{background-position:0 -111px}
+.treeview li.lastExpandable{background-position:-32px -67px}
+.treeview div.lastCollapsable-hitarea, .treeview div.lastExpandable-hitarea{background-position:0}
+
+/* Verticle Left Banner */
+.squarebanner{border:1px solid #DFE0E2; margin:15px 0 0 0; width:247px; height:247px}
+
+/* Pages and Content */
+/* Content wrap and elements */
+#pageContentWrap{width:990px; float:left}
+#content{padding:10px 20px 20px 20px; margin:5px 0 0 0}
+#content-full{padding:20px; margin:5px 0 0 0}
+.firstline-a{width:70%; height:auto; padding:0 0 10px 0}
+.firstline-b{width:30%; height:auto}
+.end{text-align:center; margin:40px 0 40px 0; color:#999}
+.rev{color:#999; font-size:12px}
+.assets{line-height:25px; width:45%; height:auto; margin:0 20px 0 0; padding:0 0 0 5px}
+.assets-single{line-height:25px; width:85%; height:auto; margin:0 20px 0 0; padding:0 0 0 5px}
+.assetssingle{line-height:25px; width:85%; height:auto; margin:0 20px 0 0; padding:0 0 0 5px}
+.assetsborder{border-right:1px solid #DFE0E2}
+.assetsborder2{border-left:1px solid #DFE0E2}
+.assets2{padding:0 10px 20px 20px}
+.endlinks{padding:0 0 0 10px}
+.classimage{margin:5px 50px 10px 15px; float:right; width:auto; height:auto}
+.classimage1{}
+.classimage2{margin:5px 30px 10px 15px; float:right; width:auto; height:auto}
+.classimage3{margin:5px 15px 10px 10px; float:left; width:auto; height:auto}
+.classimage4{margin:5px; width:auto; height:auto; text-align:center}
+.classimage5{margin:5px; width:auto; height:auto}
+.classimage6{margin:10px 5px 10px 5px; width:auto; height:auto}
+.classimage7{margin:10px 5px 20px 5px; width:auto; height:auto}
+.contentindent{margin:0 0 0 25px}
+.contentindent1{margin:0 0 15px 25px}
+.pageContent-Shell-right{width:720px; height:auto; border:1px solid #DFE0E2; margin:0 0 0 15px; padding:0 0 10px 0}
+.pageContent-Shell-full{width:100%; height:auto; border:1px solid #DFE0E2}
+.pdf{padding:0 0 0 5px}
+.smalldate{font-size:85%}
+.cutline{margin:0 0 20px 20px; padding:10px; background-color:#E3E3E3; font-size:80%; float:right}
+#pageContent-titleWrap{width:445px; height:132px; margin:15px 0 0 240px}
+.driverightvid{width:486px; height:442px; margin:0 20px 10px 0}
+.faq{padding:0 0 0 20px}
+.question{padding:0 0 0 35px}
+.sub-sub-head{color:#333; font-size:medium; font-weight:bold; line-height:30px; height:auto; width:auto}
+/* Show/Hide content  */
+.switchregion{margin:0 0 0 30px}
+.switchheader{margin-bottom:5px}
+.switchheader1{margin-bottom:25px; font-size:95%; padding-left:10px}
+.switchheader1 a{text-decoration:none}
+.switchheader1 a:hover{text-decoration:underline}
+.switchcontent{margin:0 0 10px 30px; width:80%; height:auto; background-color:#F4F4F4; padding:10px}
+.switchcontent p{margin-bottom:0px}
+.switchspacing{margin-bottom:20px}
+.switchcontent1{margin:0 0 10px 30px; width:80%; height:auto; background-color:#F4F4F4; padding:10px; position:relative; top:-15px}
+.switchcontent1 p{margin-bottom:10px}
+/* Handbook conent styles  */
+#pageContent-titleWrap-book{width:auto; height:115px; margin:21px 0 0 0}
+.white{color:white}
+.handbookheader{font-size:23px; float:left}
+.handbookheader2{font-size:16px; font-style:italic; margin:23px 0 0 25px}
+#booknumber{font-size:23px; margin:0 20px 0 0; width:70px; text-align:center; float:left; font-weight:bold}
+.watchnow{padding:5px; background-color:#CCC}
+.watchnowtext{padding:5px}
+.fb-comments-sgi{margin:10px 0 0 20px; display:none !important}
+.fb-comments-sgidisplay{display:none !important}
+
+/* Online services elements */
+/* Content landing page */
+.services{display:block; color:#000; text-decoration:none; cursor:pointer; width:270px; height:145px; padding:10px; border:1px solid #b6b3ae; margin:5px}
+.services:hover{background-color:#f5eba7; text-decoration:none}
+.services:hover p{color:#000}
+.services:hover .servicestitle{color:#c93312; text-decoration:underline; cursor:pointer}
+.services:hover a{text-decoration:none; color:#000; cursor:pointer}
+.services:hover a:hover{color:#c93312; text-decoration:underline}
+
+/* Main services landing page */
+.servicesonline{display:block; color:#000; text-decoration:none; cursor:pointer; width:270px; height:115px; padding:10px; border:1px solid #b6b3ae; margin:5px}
+.servicesonline:hover{background-color:#f5eba7; text-decoration:none}
+.servicesonline:hover p{color:#000}
+.servicesonline:hover .servicestitle{color:#c93312; text-decoration:underline; cursor:pointer}
+.servicesonline:hover a{text-decoration:none; color:#000; cursor:pointer}
+.servicesonline:hover a:hover{color:#c93312; text-decoration:underline}
+
+/* Main services landing page MySGI */
+.servicesonline2{display:block; color:#000; text-decoration:none; cursor:pointer; width:270px; height:115px; padding:10px; border:1px solid #b6b3ae; margin:5px; background:url('/images/0-structure/mysgi-bg.jpg') no-repeat}
+.servicesonline2:hover{text-decoration:none; background:none; background-color:#f5eba7}
+.servicesonline2:hover p{color:#000}
+.servicesonline2:hover .servicestitle{color:#c93312; text-decoration:underline; cursor:pointer}
+
+/* Main services landing page Tools and other elements */
+.servicesimg{padding:0 0 0 80px; text-align:center}
+.servicesimg2{padding:0 0 0 40px; text-align:center}
+.vin2{background:#FFF url(/images/0-content-pages/00-online-services/vin_search.png) no-repeat 210px -10px}
+.vin2:hover{background:#f5eba7 url('/images/0-content-pages/00-online-services/vin_search.png') no-repeat 210px -10px}
+.servicesvin{display:block; width:350px; height:auto; padding:10px; border:2px solid #DFE0E2; text-align:center; margin:0 0 0 170px}
+.servicesvin:hover{background-color:#f5eba7}
+.servicestitle2{display:block; color:#000; text-decoration:none; text-align:center; cursor:pointer; width:98%; height:auto; padding:5px; border:1px solid #b6b3ae; margin:5px}
+.servicestitle2 h4{text-align:left; cursor:pointer}
+.locitem{width:120px; padding:5px; text-decoration:none; margin-right:2px}
+.locitem:hover{background-color:#f5eba7; cursor:pointer; color:#c93312; text-decoration:none}
+.locitem:hover .servicestitle{color:#c93312; text-decoration:underline; cursor:pointer}
+.servicestxt{font-size:90%; line-height:18px; text-align:center}
+.servicestxt a{text-decoration:none; color:#000; cursor:pointer}
+.servicestxt a:hover{color:#c93312; text-decoration:underline}
+
+
+/* Content Right Side - Banners */
+#banner-right-ind-reg{background:url('/images/0-section-headers/banner-insreg.jpg') no-repeat}
+#banner-right-driver{background:url('/images/0-section-headers/banner-card.jpg') no-repeat}
+#banner-right-penalties{background:url('/images/0-section-headers/banner-penalties.jpg') no-repeat}
+#banner-right-claims{background:url('/images/0-section-headers/banner-claims.jpg') no-repeat}
+#banner-right-medical{background:url('/images/0-section-headers/banner-medical.jpg') no-repeat}
+#banner-right-safety{background:url('/images/0-section-headers/banner-safety.jpg') no-repeat}
+#banner-right-safety1{background:url('/images/0-section-headers/banner-people4.jpg') no-repeat}
+#banner-right-driveright{background:url('/images/0-section-headers/banner-driveright.jpg') no-repeat}
+#banner-right-bus{background:url('/images/0-section-headers/banner-bus.jpg') no-repeat}
+#banner-right-carriers{background:url('/images/0-section-headers/banner-carrier.jpg') no-repeat}
+#banner-right-safetytraining{background:url('/images/0-section-headers/banner-drivertraining.jpg') no-repeat}
+#banner-right-dealers{background:url('/images/0-section-headers/banner-people.jpg') no-repeat}
+#banner-right-permit{background:url('/images/0-section-headers/banner-permit.jpg') no-repeat}
+#banner-right-guides{background:url('/images/0-section-headers/banner-book.jpg') no-repeat}
+#banner-right-vis{background:url('/images/0-section-headers/banner-repair.jpg') no-repeat}
+#banner-right-suppliers{background:url('/images/0-section-headers/banner-shake.jpg') no-repeat}
+#banner-right-brokers{background:url('/images/0-section-headers/banner-woman.jpg') no-repeat}
+#banner-right-issuers{background:url('/images/0-section-headers/banner-group.jpg') no-repeat}
+#banner-right-online{background:url('/images/0-section-headers/banner-people2.jpg') no-repeat}
+#banner-right-mlis{background:url('/images/0-section-headers/banner-computer.jpg') no-repeat}
+#banner-right-about{background:url('/images/0-section-headers/banner-sgi.jpg') no-repeat}
+#banner-right-help{background:url('/images/0-section-headers/banner-help.jpg') no-repeat}
+#banner-right-media{background:url('/images/0-section-headers/banner-media.jpg') no-repeat}
+#banner-right-careers{background:url('/images/0-section-headers/banner-careers.jpg') no-repeat}
+#banner-right-epay{background:url('/images/0-section-headers/banner-epay.jpg') no-repeat}
+#banner-right-news{background:url('/images/0-section-headers/banner-sgi.jpg') no-repeat}
+#banner-right-farm2{background:url('/images/0-section-headers/banner-farm2.jpg') no-repeat}
+#banner-right-farm1{background:url('/images/0-section-headers/banner-farm.jpg') no-repeat}
+#banner-right-salvage{background:url('/images/0-section-headers/banner-salvage.jpg') no-repeat}
+#banner-right-mysgi{background:url('/images/0-section-headers/banner-mysgi2.jpg') no-repeat}
+#banner-right-house{background:url('/images/0-section-headers/banner-house.jpg') no-repeat}
+#banner-right-issuer{background:url('/images/0-section-headers/banner-issuer.jpg') no-repeat}
+#banner-right-book-0{background:url('/images/0-section-headers/handbook/banner-handbook-a.jpg') no-repeat}
+#banner-right-book-0b{background:url('/images/0-section-headers/handbook/banner-handbook-b.jpg') no-repeat}
+#banner-right-book-1{background:url('/images/0-section-headers/handbook/banner-handbook-c.jpg') no-repeat}
+#banner-right-book-2{background:url('/images/0-section-headers/handbook/banner-handbook-d.jpg') no-repeat}
+#banner-right-book-3{background:url('/images/0-section-headers/handbook/banner-handbook-e.jpg') no-repeat}
+#banner-right-book-4{background:url('/images/0-section-headers/handbook/banner-handbook-f.jpg') no-repeat}
+#banner-right-book-5{background:url('/images/0-section-headers/handbook/banner-handbook-g.jpg') no-repeat}
+#banner-right-book-6{background:url('/images/0-section-headers/handbook/banner-handbook-h.jpg') no-repeat}
+#banner-right-book-7{background:url('/images/0-section-headers/handbook/banner-handbook-i.jpg') no-repeat}
+#banner-right-book-8{background:url('/images/0-section-headers/handbook/banner-handbook-j.jpg') no-repeat}
+#banner-right-mobileapp{background:url('/images/0-section-headers/banner-mobileapp.jpg') no-repeat}
+#banner-right-card2{background:url('/images/0-section-headers/banner-card2.jpg') no-repeat}
+#banner-right-carseat{background:url('/images/0-section-headers/banner-carseat.jpg') no-repeat}
+#banner-right-communityrelations{background:url('/images/0-section-headers/banner-communityrelations.jpg') no-repeat}
+#banner-right-partnerssignin{background:url('/images/0-section-headers/banner-partnerssignin.jpg') no-repeat}
+#banner-right-motorcycle{background:url('/images/0-section-headers/banner-motorcycle.jpg') no-repeat}
+#banner-right-cycle2{background:url('/images/0-section-headers/banner-motorcycle2.jpg') no-repeat}
+
+/* Tools */
+#tools{font-size:13px; margin:0 0 10px 15px; width:100px; cursor:pointer}/* Set size for body content */
+#addpoint{cursor:pointer}
+.addthis_toolbox .custom_hover{position:relative;}
+.addthis_toolbox .custom_hover .custom_button{font-weight:bold}
+.addthis_toolbox .custom_hover .custom_button.active{background-color:#eee}
+.addthis_toolbox .hover_menu{display:none; position:absolute; background:#fff}
+.addthis_toolbox .hover_menu{width:115px; padding:10px 0 10px 0; border:1px solid #DFE0E2}
+.addthis_toolbox .hover_menu  a{width:81px; padding:4px 0 4px 34px; position:relative; display:block; text-decoration:none}
+.addthis_toolbox .hover_menu  a:hover{display:block; text-decoration:underline}
+.addthis_toolbox .hover_menu  span{position:absolute; left:14px; top:4px}
+.addthis_toolbox .hover_menu  .fontlarge{background:url('/images/0-structure/large-a.gif') no-repeat 14px; cursor:pointer}
+.addthis_toolbox .hover_menu  .fontsmall{background:url('/images/0-structure/large-a.gif') no-repeat 14px; cursor:pointer}
+.addthis_toolbox .hover_menu  .fontreset{background:url('/images/0-structure/reset.gif') no-repeat 14px; cursor:pointer}
+
+/* Footnote div */
+ol.foot{line-height:22px; margin:8px 0 20px 50px}
+#footnotediv{position:absolute; width:400px; overflow:visible}
+#footnotediv div{background-color:white; padding:3px 12px 3px 12px; border:1px solid #999}
+a.footnotebacklink{border-bottom:none; text-decoration:none}
+a.footnotebacklink:hover{border-bottom:none; text-decoration:underline}
+a.footnotebacklink img{margin:0; padding:0; border:0}
+
+/* Footer Include */
+#footer{width:990px; height:auto; color:#999; margin:20px 0 0 0; border-top:1px solid #DFE0E2; font-size:12px}
+.footerlinks, .footerlinks a:link, .footerlinks a:visited, .footerlinks a:active{color:#000; font-weight:bold; text-decoration:none; padding:4px 0 6px 0}
+.footerlinks a:hover{color:#c93312; text-decoration:underline}
+.pad{padding:7px 7px 40px 7px}
+.footleft img{margin:0 10px 0 0; padding:5px}
+.footleft img:hover{text-decoration:underline; background-color:#f3e26d;}
+.footright{width:440px; height:auto; text-align:right}
+.footline{padding:0 5px 0 5px}
+.copyrightclass{padding:0 0 2px 0}
+
+/* Effects/ Alerts */
+.noscript-error{color:#c93312; font-size:65%; margin:0 0 5px 0; font-weight:bold; text-align:right}
+.noscript-error a{color:#c93312; text-decoration:underline}
+.noscript-error a:hover{color:black; text-decoration:underline}
+.noscript-error2{color:#c93312; text-align:right; height:auto; width:auto; margin:0 0 30px 0; font-size:80%}
+.error1{font-size: 90%; color:#c93312; font-weight: bold; margin: 0.75em 0;}
+.noJS{display:none}
+.showJS{display:inline}
+.showonmobile{display:none}

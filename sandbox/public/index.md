@@ -2,5 +2,4 @@
 
 ## Available urls
 
-- all_search
-- results
+- [all_search](all_search.html)
