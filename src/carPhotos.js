@@ -3,7 +3,8 @@ var carPhotos = (function( $ ) {
 
 
     // flag if global initialization has been completed
-    var ready = false;
+    var ready = false,
+        tofu = function(a,c){return a.replace(/{ *([^} ]+) *}/g,function(b,a){b=c;a.replace(/[^.]+/g,function(a){b=b[a]});return b})};
 
 
     function ItemsTableModManager( el ) {
@@ -53,8 +54,8 @@ var carPhotos = (function( $ ) {
             if ( $('.js-mods .mod--thumbnail', row).length > 0 ) return;
 
             var stockNumber = $('td:eq(' + stockNumberColumn + ')', row).text(),
-                thumbUrl = mainPhotoUrlTemplate.replace( '{stockNumber}', stockNumber ),
-                component = $.render( itemPhotoTemplate, { src: thumbUrl, stockNumber: stockNumber } );
+                thumbUrl = tofu( mainPhotoUrlTemplate, {stockNumber: stockNumber} ),
+                component = tofu( itemPhotoTemplate, { src: thumbUrl } );
 
             $('.js-mods', row).append( component ); 
         };
