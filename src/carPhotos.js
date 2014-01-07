@@ -24,7 +24,7 @@ var carPhotos = (function( $ ) {
 
         self.install = function install( mod ) {
             el.find('tbody tr').each(function(i, row) {
-                mod.install( row );
+                mod.install( row, self );
             });
         };
 
@@ -42,16 +42,19 @@ var carPhotos = (function( $ ) {
     }
 
 
-    function ItemThumbnailMod( stockNumberColumn ) {
+    function ItemThumbnailMod() {
         var self = this,
             mainPhotoUrlTemplate = '/images/salvage_images/{stockNumber}/main/1.jpg',
             itemPhotoTemplate = 
                 '<div class="mod--thumbnail" target="_blank"> \
                     <img alt="loading..." src="{src}" width="245"/> \
-                </div>';
+                </div>',
+            stockNumberColumn;
 
-        self.install = function install( row ) {
+        self.install = function install( row, table ) {
             if ( $('.js-mods .mod--thumbnail', row).length > 0 ) return;
+
+            if ( typeof stockNumberColumn === 'undefined') stockNumberColumn = table.findStockNumberColumn();
 
             var stockNumber = $('td:eq(' + stockNumberColumn + ')', row).text(),
                 thumbUrl = tofu( mainPhotoUrlTemplate, {stockNumber: stockNumber} ),
@@ -72,11 +75,10 @@ var carPhotos = (function( $ ) {
 
         var itemsTableElement = $('#bid_items').length > 0 ? $('#bid_items') : $('#bid_results'),
             manager = new ItemsTableModManager( itemsTableElement ),
-            stockNumberColumn = manager.findStockNumberColumn()
-            thumbnailMod = new ItemThumbnailMod( stockNumberColumn ); 
+            thumbnailMod = new ItemThumbnailMod(); 
 
         manager.init();
-        // manager.install( thumbnailMod );
+        manager.install( thumbnailMod );
         ready = true;
     }
 
