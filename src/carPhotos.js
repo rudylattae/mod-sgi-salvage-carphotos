@@ -45,7 +45,7 @@ var carPhotos = (function( $ ) {
     function ItemThumbnailMod() {
         var self = this,
             mainPhotoUrlTemplate = '/images/salvage_images/{stockNumber}/main/1.jpg',
-            itemPhotoTemplate = 
+            itemPhotoTemplate =
                 '<div class="mod--thumbnail" target="_blank"> \
                     <img alt="loading..." src="{src}" width="245"/> \
                 </div>',
@@ -81,6 +81,8 @@ var carPhotos = (function( $ ) {
         manager.install( thumbnailMod );
         ready = true;
     }
+
+    init();
 
     return { 
         ItemsTableModManager: ItemsTableModManager,
