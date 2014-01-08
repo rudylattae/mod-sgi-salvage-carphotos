@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    Task = require('shell-task'),
     bookmarklet = require('./gulp-bookmarklet');
 
 var jsSrcFiles = 'src/**/*.js';
@@ -19,6 +20,24 @@ gulp.task('bookmarklet', function() {
         .pipe( concat('bookmarklet.js') )
         .pipe( bookmarklet() )
         .pipe( gulp.dest('dist/') );
+});
+
+gulp.task('docs', function() {
+    // Build and publish docs
+    new Task('harp compile docs _gh-pages')
+            .then('cd _gh-pages')
+            .then('git add .')
+            .then('git commit -m "Update docs"')
+            .then('git push')
+            .run(function success() {
+
+            }, function error( err ) {
+                throw err;
+            });
+    // exec(['harp', 'compile', 'docs', '_gh-pages'], function(err, out, code) {
+    //     if (err) throw err;
+    //     process.stdout.write( out );
+    // });
 });
 
 gulp.task('devcycle', function() {
