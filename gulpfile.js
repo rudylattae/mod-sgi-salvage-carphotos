@@ -30,33 +30,6 @@ gulp.task('docs', function() {
     });
 });
 
-gulp.task('publish', function() {
-    // Build and publish docs
-    gulp.run('docs', function( err ) {
-        if (err) throw err;
-
-        exec(['git', 'add', '.'], { cwd: './_gh-pages'}, function(err, out, code) {
-            if (err) throw err;
-            process.stdout.write( out );
-        });
-
-        exec(['git', 'commit', '-m', '"Update docs"'], { cwd: './_gh-pages'}, function(err, out, code) {
-            if (err) throw err;
-            process.stdout.write( out );
-        });
-
-        exec(['git', 'push'], { cwd: './_gh-pages'}, function(err, out, code) {
-            if (err) throw err;
-            process.stdout.write( out );
-        });
-
-        exec(['cd', '..'], function(err, out, code) {
-            if (err) throw err;
-            process.stdout.write( out );
-        });
-    });
-});
-
 gulp.task('devcycle', function() {
     gulp.run('scripts');
 
