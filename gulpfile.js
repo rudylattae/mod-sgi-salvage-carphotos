@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    Task = require('shell-task'),
+    exec = require('exec'),
     bookmarklet = require('./gulp-bookmarklet');
 
 var jsSrcFiles = 'src/**/*.js';
@@ -23,21 +23,38 @@ gulp.task('bookmarklet', function() {
 });
 
 gulp.task('docs', function() {
-    // Build and publish docs
-    new Task('harp compile docs _gh-pages')
-            .then('cd _gh-pages')
-            .then('git add .')
-            .then('git commit -m "Update docs"')
-            .then('git push')
-            .run(function success() {
+    // Build docs
+    exec(['harp', 'compile', 'docs', '_gh-pages'], function(err, out, code) {
+        if (err) throw err;
+        process.stdout.write( out );
+    });
+});
 
-            }, function error( err ) {
-                throw err;
-            });
-    // exec(['harp', 'compile', 'docs', '_gh-pages'], function(err, out, code) {
-    //     if (err) throw err;
-    //     process.stdout.write( out );
-    // });
+gulp.task('publish', function() {
+    // Build and publish docs
+    gulp.run('docs', function( err ) {
+        if (err) throw err;
+
+        exec(['git', 'add', '.'], { cwd: './_gh-pages'}, function(err, out, code) {
+            if (err) throw err;
+            process.stdout.write( out );
+        });
+
+        exec(['git', 'commit', '-m', '"Update docs"'], { cwd: './_gh-pages'}, function(err, out, code) {
+            if (err) throw err;
+            process.stdout.write( out );
+        });
+
+        exec(['git', 'push'], { cwd: './_gh-pages'}, function(err, out, code) {
+            if (err) throw err;
+            process.stdout.write( out );
+        });
+
+        exec(['cd', '..'], function(err, out, code) {
+            if (err) throw err;
+            process.stdout.write( out );
+        });
+    });
 });
 
 gulp.task('devcycle', function() {
