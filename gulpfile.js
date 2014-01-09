@@ -11,7 +11,14 @@ gulp.task('scripts', function() {
     // Minify and copy all JavaScript
     gulp.src( jsSrcFiles )
         .pipe( uglify() )
-        .pipe( gulp.dest('build/') );
+        .pipe( gulp.dest('build/') )
+});
+
+gulp.task('sandbox', function() {
+    // Concat and copy JavaScript to sandbox
+    gulp.src( jsSrcFiles )
+        .pipe( concat('carPhotos.js') )
+        .pipe( gulp.dest('sandbox/public/js/') )
 });
 
 gulp.task('bookmarklet', function() {
