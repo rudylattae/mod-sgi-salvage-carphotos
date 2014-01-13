@@ -9,21 +9,14 @@ var jsBuiltFiles = 'build/**/*.js';
 
 gulp.task('scripts', function() {
     // Minify and copy all JavaScript
-    gulp.src( jsSrcFiles )
+    return gulp.src( jsSrcFiles )
         .pipe( uglify() )
         .pipe( gulp.dest('build/') )
 });
 
-gulp.task('sandbox', function() {
-    // Concat and copy JavaScript to sandbox
-    gulp.src( jsSrcFiles )
-        .pipe( concat('carPhotos.js') )
-        .pipe( gulp.dest('sandbox/public/js/') )
-});
-
 gulp.task('bookmarklet', function() {
     // Convert to bookmarklet
-    gulp.src( jsBuiltFiles )
+    return gulp.src( jsBuiltFiles )
         .pipe( concat('bookmarklet.js') )
         .pipe( bookmarklet() )
         .pipe( gulp.dest('dist/') );
@@ -37,14 +30,30 @@ gulp.task('docs', function() {
     });
 });
 
-gulp.task('devcycle', function() {
-    gulp.run('scripts');
+gulp.task('sandbox', function() {
+    // Concat and copy JavaScript to sandbox
+    return gulp.src( jsSrcFiles )
+        .pipe( concat('carPhotos.js') )
+        .pipe( gulp.dest('sandbox/public/js/') )
+});
+
+gulp.task('dev', function() {
+    gulp.run('default');
 
     gulp.watch( jsSrcFiles , function() {
-        gulp.run('scripts');
+        gulp.run('default');
     });
 });
 
-gulp.task('default', function(){
+gulp.task('default', function() {
     gulp.run('scripts');
+    gulp.run('sandbox');
+});
+
+gulp.task('package', function(){
+    gulp.run('scripts', function() {
+        gulp.run('bookmarklet', function() {
+            gulp.run('docs');
+        });
+    });
 });

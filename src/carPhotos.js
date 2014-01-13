@@ -1,5 +1,8 @@
-var carPhotos = (function( $ ) {
+var carPhotos = (function() {
     "use strict";
+
+    // imports
+    var $ = jQuery;
 
 
     // flag if global initialization has been completed
@@ -89,4 +92,4 @@ var carPhotos = (function( $ ) {
         ItemThumbnailMod: ItemThumbnailMod,
         init: init
     };
-})( jQuery );
+})();
