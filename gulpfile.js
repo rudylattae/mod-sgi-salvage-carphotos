@@ -4,8 +4,9 @@ var gulp = require('gulp'),
     exec = require('exec'),
     bookmarklet = require('./gulp-bookmarklet');
 
-var jsSrcFiles = 'src/**/*.js';
-var jsBuiltFiles = 'build/**/*.js';
+var jsSrcFiles = 'src/**/*.js',
+    jsBuiltFiles = 'build/**/*.js',
+    docFiles = 'docs/**/*.*';
 
 gulp.task('scripts', function() {
     // Minify and copy all JavaScript
@@ -23,7 +24,7 @@ gulp.task('bookmarklet', function() {
 });
 
 gulp.task('docs', function() {
-    // Build docs
+    // Build docs (after creating the bookmarklet)
     exec(['harp', 'compile', 'docs', '_gh-pages'], function(err, out, code) {
         if (err) throw err;
         process.stdout.write( out );
@@ -39,6 +40,10 @@ gulp.task('sandbox', function() {
 
 gulp.task('dev', function() {
     gulp.run('default');
+
+    gulp.watch( docFiles , function() {
+        gulp.run('docs');
+    });
 
     gulp.watch( jsSrcFiles , function() {
         gulp.run('default');
