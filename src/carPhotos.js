@@ -7,7 +7,8 @@ var carPhotos = (function() {
 
     // flag if global initialization has been completed
     var ready = false,
-        tofu = function(a,c){return a.replace(/{ *([^} ]+) *}/g,function(b,a){b=c;a.replace(/[^.]+/g,function(a){b=b[a]});return b})};
+        tofu = function(a,c){return a.replace(/{ *([^} ]+) *}/g,function(b,a){b=c;a.replace(/[^.]+/g,function(a){b=b[a]});return b})},
+        ls = function(a,b){return b?{get:function(c){return a[c]&&b.parse(a[c])},set:function(c,d){a[c]=b.stringify(d)}}:{}}(window.localStorage||{},JSON);
 
 
     function StarItemMod( table ) {
@@ -37,12 +38,23 @@ var carPhotos = (function() {
 
 
         self.install = function install() {
+            self.showStarredItem(ls.get('star'));
+
             table.on('click', '.js-star-item', function() {
-                var stockNumber = $(this).attr('data-stock-number'),
-                    thumbnailUrl = $(this).attr('data-thumbnail-url'),
-                    starredItem = tofu( starredItemTemplate, { thumbnailUrl: thumbnailUrl, stockNumber: stockNumber } );
-                doc.find('.js-starred-items').append(starredItem);
+                var item = {
+                        'stockNumber': $(this).attr('data-stock-number'),
+                        'thumbnailUrl':$(this).attr('data-thumbnail-url')
+                    };
+
+                ls.set('star', item);
+                self.showStarredItem( item );
             });
+        };
+
+        self.showStarredItem = function install( item ) {
+            if (typeof item === 'undefined') return;
+            var starredItem = tofu( starredItemTemplate, item );
+            doc.find('.js-starred-items').append(starredItem);
         };
 
         self.uninstall = function uninstall() {
@@ -76,7 +88,7 @@ var carPhotos = (function() {
             var found = 0;
 
             table.find('thead tr th').each(function(i, cell) {
-                if ( cell.innerText == "Stock Number" ) {
+                if ( cell.textContent == "Stock Number" ) {
                     found = i;
                     return false;
                 }
