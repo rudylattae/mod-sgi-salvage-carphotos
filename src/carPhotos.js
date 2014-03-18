@@ -43,6 +43,7 @@ var carPhotos = (function() {
     };
     db.init();
 
+
     function StarItemMod( table ) {
         var self = this,
             doc = $(document),
