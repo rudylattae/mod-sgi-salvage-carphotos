@@ -156,7 +156,7 @@ var carPhotos = (function() {
 
     function ItemThumbnailMod() {
         var self = this,
-            detailsTemplate = 'lcgi/salvage_bid_site/comp_details.cgi?stock_num={stockNumber}&store={storeName}',
+            detailsTemplate = '/lcgi/salvage_bid_site/comp_details.cgi?stock_num={stockNumber}&store={storeName}',
             mainPhotoUrlTemplate = '/images/salvage_images/{stockNumber}/main/1.jpg',
             itemPhotoTemplate =
                 '<div class="mod--thumbnail" target="_blank"> \
