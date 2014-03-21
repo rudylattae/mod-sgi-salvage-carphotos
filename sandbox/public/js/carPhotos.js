@@ -34,7 +34,6 @@ var carPhotos = (function() {
             var i = 0,
                 z = this._items.length;
             for (; i < z; i++) {
-                debugger;
                 if (this._items[i].stockNumber == item.stockNumber) 
                     return true;
             }
@@ -56,7 +55,7 @@ var carPhotos = (function() {
                 </style>',
             starredItemTemplate =
                 '<div class="starred-item"> \
-                    <img alt="loading..." src="{thumbnailUrl}" width="100%"/> \
+                    <a href="{detailsUrl}" target="_blank"><img alt="loading..." src="{thumbnailUrl}" width="100%"/></a> \
                     <span class="stock-number">{stockNumber}</span> \
                 </div>';
 
@@ -82,7 +81,8 @@ var carPhotos = (function() {
             table.on('click', '.js-star-item', function() {
                 var item = {
                         'stockNumber': $(this).attr('data-stock-number'),
-                        'thumbnailUrl':$(this).attr('data-thumbnail-url')
+                        'thumbnailUrl':$(this).attr('data-thumbnail-url'),
+                        'detailsUrl':$(this).attr('data-details-url')
                     };
 
                 if ( !db.has(item) ) {
@@ -139,28 +139,45 @@ var carPhotos = (function() {
             });
             return found;
         };
+
+        self.findStoreNameColumn = function findStoreNameColumn() {
+            var found = 0;
+
+            table.find('thead tr th').each(function(i, cell) {
+                if ( cell.textContent == "Branch" ) {
+                    found = i;
+                    return false;
+                }
+            });
+            return found;
+        };
     }
 
 
     function ItemThumbnailMod() {
         var self = this,
+            detailsTemplate = 'lcgi/salvage_bid_site/comp_details.cgi?stock_num={stockNumber}&store={storeName}',
             mainPhotoUrlTemplate = '/images/salvage_images/{stockNumber}/main/1.jpg',
             itemPhotoTemplate =
                 '<div class="mod--thumbnail" target="_blank"> \
-                    <img alt="loading..." src="{thumbnailUrl}" width="245"/> \
-                    <span class="js-star-item star" data-stock-number="{stockNumber}" \
+                    <a href="{detailsUrl}" target="_blank"><img alt="loading..." src="{thumbnailUrl}" width="245"/></a> \
+                    <span class="js-star-item star" data-stock-number="{stockNumber}" data-details-url="{detailsUrl}" \
                         data-thumbnail-url="{thumbnailUrl}" title="Star item #{stockNumber}">&#x02605;</span> \
                 </div>',
-            stockNumberColumn;
+            stockNumberColumn,
+            storeNameColumn;
 
         self.install = function install( row, tableManager ) {
             if ( $('.js-mods .mod--thumbnail', row).length > 0 ) return;
 
             if ( typeof stockNumberColumn === 'undefined') stockNumberColumn = tableManager.findStockNumberColumn();
+            if ( typeof storeNameColumn === 'undefined') storeNameColumn = tableManager.findStoreNameColumn();
 
             var stockNumber = $('td:eq(' + stockNumberColumn + ')', row).text(),
+                storeName = $('td:eq(' + storeNameColumn + ')', row).text(),
+                detailsUrl = tofu( detailsTemplate, {stockNumber: stockNumber, storeName: storeName} ),
                 thumbnailUrl = tofu( mainPhotoUrlTemplate, {stockNumber: stockNumber} ),
-                component = tofu( itemPhotoTemplate, { thumbnailUrl: thumbnailUrl, stockNumber: stockNumber } );
+                component = tofu( itemPhotoTemplate, { thumbnailUrl: thumbnailUrl, stockNumber: stockNumber, detailsUrl: detailsUrl } );
 
             $('.js-mods', row).append( component ); 
         };
